@@ -1,5 +1,8 @@
 #pragma once
 
+using namespace Vlad;
+using namespace Tolya;
+
 namespace Calculator {
 
 	using namespace System;
@@ -8,6 +11,7 @@ namespace Calculator {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+
 
 	/// <summary>
 	/// Summary for MyForm
@@ -127,6 +131,7 @@ namespace Calculator {
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"+";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
 			// button2
 			// 
@@ -136,6 +141,7 @@ namespace Calculator {
 			this->button2->TabIndex = 2;
 			this->button2->Text = L"-";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// button3
 			// 
@@ -145,6 +151,7 @@ namespace Calculator {
 			this->button3->TabIndex = 2;
 			this->button3->Text = L"/";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			// 
 			// button4
 			// 
@@ -154,6 +161,7 @@ namespace Calculator {
 			this->button4->TabIndex = 2;
 			this->button4->Text = L"*";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
 			// 
 			// MyForm
 			// 
@@ -177,5 +185,30 @@ namespace Calculator {
 
 		}
 #pragma endregion
-	};
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+				 if (textBox1->Text != "" && textBox2->Text != "") //Проверяем введены ли числа
+				 {
+					 textBox3->Text =  Vlad::lib::plus(Convert::ToDouble(textBox1->Text), Convert::ToDouble(textBox2->Text)).ToString();
+				 }
+				 
+	}
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+			 if (textBox1->Text != "" && textBox2->Text != "") //Проверяем введены ли числа
+			 {
+				 textBox3->Text = Vlad::lib::minus(Convert::ToDouble(textBox1->Text), Convert::ToDouble(textBox2->Text)).ToString();
+			 }
+}
+private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+			 if (textBox1->Text != "" && textBox2->Text != "") //Проверяем введены ли числа
+			 {
+				 textBox3->Text = Tolya::lib::delenye(Convert::ToDouble(textBox1->Text), Convert::ToDouble(textBox2->Text)).ToString();
+			 }
+}
+private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
+			 if (textBox1->Text != "" && textBox2->Text != "") //Проверяем введены ли числа
+			 {
+				 textBox3->Text = Tolya::lib::ymnogenie(Convert::ToDouble(textBox1->Text), Convert::ToDouble(textBox2->Text)).ToString();
+			 }
+}
+};
 }
